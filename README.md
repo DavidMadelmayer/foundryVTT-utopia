@@ -8,5 +8,5 @@ A Fan System made by [David](https://github.com/DavidMadelmayer) with permission
 
 ## History
 
-This is the Major Project for my bachelor’s degree. 
-This means Future Updates are not guaranteed.
+This is the major project for my bachelor’s degree. 
+This means future updates are not guaranteed.
