@@ -1,0 +1,114 @@
+{
+  "name": "utopia",
+  "title": "Utopia",
+  "description": "The Utopia System by Oridont adapted for FoundryVTT by Dyvid",
+  "version": "0.1.1",
+  "compatibility": {
+    "minimum": "10.282",
+    "verified": "12.331"
+  },
+  "authors": [
+    {
+      "name": "Dyvid",
+      "url": "https://www.reddit.com/user/Dy-66-vid/",
+      "flags": {}
+    }
+  ],
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/utopia/assets/UtopiaSystemImage.webp",
+      "thumbnail": "systems/utopia/assets/UtopiaSystemImage.webp"
+    }
+  ],
+  "esmodules": ["utopia.js"],
+  "styles": ["system/utopia_main.css"],
+  "scripts": [],
+  "packs": [
+    {
+      "name": "species",
+      "label": "Species",
+      "system": "utopia",
+      "path": "./packs/species.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "coreTree",
+      "label": "Core Trees",
+      "system": "utopia",
+      "path": "./packs/coreTree.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "coreTraits",
+      "label": "Core Traits",
+      "system": "utopia",
+      "path": "./packs/coreTraits.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "speciesTraits",
+      "label": "Species Traits",
+      "system": "utopia",
+      "path": "./packs/speciesTraits.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "extraTraits",
+      "label": "Extra Traits",
+      "system": "utopia",
+      "path": "./packs/extraTraits.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "weapons",
+      "label": "Weapons",
+      "system": "utopia",
+      "path": "./packs/weapons.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "spells",
+      "label": "Spells",
+      "system": "utopia",
+      "path": "./packs/spells.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "equipment",
+      "label": "Equipment",
+      "system": "utopia",
+      "path": "./packs/equipment.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": true,
+  "initiative": "3d6",
+  "gridDistance": 1,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "system.hp.value",
+  "license": "Copyright 2025, David"
+}

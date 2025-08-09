@@ -1,0 +1,244 @@
+{
+	"Actor": {
+		"types": [
+			"character",
+			"npc",
+			"simulation"
+		],
+		"templates": {
+			"basicStats": {
+				"edit": false,
+				"autoChalc": true,
+				"species": "",
+				"money": 0,
+				"shp": {
+					"value": 0,
+					"max": 0
+				},
+				"dhp": {
+					"value": 0,
+					"max": 0
+				},
+				"hp": {
+					"value": 0,
+					"max": 0
+				},
+				"stamina": {
+					"value": 0,
+					"max": 0
+				},
+				"def": {
+					"cold": 1,
+					"light": 1,
+					"fire": 1,
+					"phys": 1,
+					"mind": 1
+				},
+				"actions": 6,
+				"reactions": 2,
+				"block": "",
+				"dodge": "",
+				"base": {
+					"block": "",
+					"dodge": ""
+				},
+				"traits": {
+					"agi": {"value": 0, "mod": 0},
+					"str": {"value": 0, "mod": 0},
+					"int": {"value": 0, "mod": 0},
+					"wil": {"value": 0, "mod": 0},
+					"dis": {"value": 0, "mod": 0},
+					"cha": {"value": 0, "mod": 0}
+				},
+				"subtraits": {
+					"speed": {"chk": false, "value": 1, "mod": 0},
+					"dex": {"chk": false, "value": 1, "mod": 0},
+					"pow": {"chk": false, "value": 1, "mod": 0},
+					"fort": {"chk": false, "value": 1, "mod": 0},
+					"engi": {"chk": false, "value": 1, "mod": 0},
+					"memory": {"chk": false, "value": 1, "mod": 0},
+					"resolve": {"chk": false, "value": 1, "mod": 0},
+					"aware": {"chk": false, "value": 1, "mod": 0},
+					"port": {"chk": false, "value": 1, "mod": 0},
+					"stunt": {"chk": false, "value": 1, "mod": 0},
+					"appeal": {"chk": false, "value": 1, "mod": 0},
+					"lang": {"chk": false, "value": 1, "mod": 0}
+				},
+				"talent": {
+					"body": 0,
+					"mind": 0,
+					"soul": 0
+				},
+				"attributes": {
+					"con": 0,
+					"end": 0,
+					"eff": 0
+				},
+				"speed": {
+					"land": 0,
+					"water": 0,
+					"air": 0
+				},
+				"lang": [],
+				"diceOfFavor": 0,
+				"tempDOfFav": 0,
+				"quickActions": false,
+				"mods": {
+					"melee": {
+						"StamRedu": 0
+					},
+					"ranged": {
+						"StamRedu": 0
+					},
+					"effect": {
+						"StamRedu": 0,
+						"Spellcap": 0
+					}
+				}
+			}
+		},
+		"character": {
+			"templates": ["basicStats"],
+			"talent": {
+				"points": 10
+			},
+			"traits": {
+				"points": 15
+			},
+			"xp": {
+				"value": 0,
+				"max": 1000
+			},
+			"level": 10
+		},
+		"npc": {
+			"templates": ["basicStats"],
+			"notes": "",
+			"showTraits": false,
+			"difficulty": 1
+		},
+		"simulation": {
+			"resultFriend": [],
+			"resultFoe": []
+		}
+	},
+	"Item": {
+		"types": [
+			"equipment",
+			"consumable",
+			"weapon",
+			"material",
+			"talent",
+			"talentTree",
+			"simItem"
+		],
+		"templates":{
+			"itemDescription": {
+				"type": "",
+				"description": "",
+				"amount": 1,
+				"value": 1,
+				"weight": 0,
+				"favor": false
+			},
+			"talentDescription": {
+				"type": "",
+				"description": "",
+				"favor": false,
+				"color": "#9e9e9e",
+				"colorIcon": false
+			}
+		},
+		"equipment":{
+			"templates": ["itemDescription"],
+			"equipped": false,
+			"slot": "",
+			"block": "",
+			"dodge": ""
+		},
+		"consumable":{
+			"templates": ["itemDescription"],
+			"consumable": true,
+			"uses": {
+				"value": 1,
+				"max": 1
+			}
+		},
+		"weapon":{
+			"templates": ["itemDescription"],
+			"isRanged": false,
+			"range": 5,
+			"rangeLong": 10,
+			"staminaCost": 2,
+			"actionCost": 1,
+			"hasDmg": true,
+			"damage": "2d8",
+			"damageType": "phys",
+			"bonusName": "",
+			"ability": false,
+			"chatFlavor": "",
+			"variableSet": false,
+			"aoe": false,
+			"aoeValue": 0,
+			"blockable": true,
+			"dmgToHP": "shpF"
+		},
+		"material":{
+			"templates": ["itemDescription"]
+		},
+		"talent":{
+			"templates": ["talentDescription"],
+			"cost": {
+				"body": 0,
+				"mind": 0,
+				"soul": 0
+			},
+			"canBeTrigged": false,
+			"canBeDiabled": true,
+			"diabled": false,
+			"block": "",
+			"dodge": ""
+		},
+		"talentTree":{
+			"templates": ["talentDescription"],
+			"edit": false,
+			"talents": [
+				[],
+				[],
+				[]
+			],
+			"gifted": {},
+			"lang": [],
+			"blockRating": "3d4",
+			"dodgeRating": "1d12",
+			"attributes": {
+					"con": 4,
+					"end": 6,
+					"eff": 3
+			}
+		},
+		"simItem":{
+			"IFF":	false,
+			"actionsArr":[],
+			"amount": 1,
+			"arrives": 1,
+			"block": "3d4",
+			"dodge": "1d12",
+			"shp": 10,
+			"dhp": 10,
+			"stamina": 10,
+			"actions": 6,
+			"reactions": 2,
+			"def": {
+				"cold": 1,
+				"light": 1,
+				"fire": 1,
+				"phys": 1,
+				"mind": 1
+			},
+			"reactionUse": "default",
+			"actionUse": "default",
+			"target": "default"
+		}
+	}
+}
