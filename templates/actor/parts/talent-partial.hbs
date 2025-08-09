@@ -1,0 +1,40 @@
+<div class="itemRow item rightmenu" data-item-id="{{item._id}}">
+    <div class="per45 text-over">
+        {{#if item.system.colorIcon}}
+            <div class="imageMask inv-image" style="background-color: {{item.system.color}}; mask-image: url({{item.img}}); -webkit-mask-image: url({{item.img}});"></div>
+        {{else}}
+            <img class="inv-image" src="{{item.img}}" alt="{{item.name}}">
+        {{/if}}
+        &nbsp;
+        <a class="item-edit">
+            {{item.name}}
+        </a>
+        |
+        {{#if item.system.type}}
+            {{localize (concat 'utopia.type.' item.system.type)}}
+        {{/if}}
+    </div>
+    <div class="per45">
+        <div class="smlTalentFlag" style="background-color: {{item.system.color}};">
+        </div>
+    </div>
+    <div class="inline per10">
+        {{#if item.system.canBeDiabled}}
+            {{#if item.system.diabled}}
+                <a class="toggle-effect" title="{{ localize 'utopia.item.disableEff' }}">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </a>
+                &nbsp;
+            {{else}}
+                <a class="toggle-effect" title="{{ localize 'utopia.item.enableEff' }}">
+                    <i class="fa-solid fa-eye"></i>
+                </a>
+                &nbsp;
+            {{/if}}
+        {{/if}}
+        {{#if item.system.canBeTrigged}}
+            <a class="item-use" title="{{ localize 'utopia.item.use' }}"><i class="fa-solid fa-hand"></i></a>
+            &nbsp;
+        {{/if}}
+    </div>
+</div>

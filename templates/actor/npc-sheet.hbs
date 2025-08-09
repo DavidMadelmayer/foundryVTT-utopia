@@ -1,0 +1,116 @@
+<form class="actor-sheet text in-square whiteForm {{cssClass}}" autocomplete="off">
+    <div class="flexCVert npcHeader">
+        <div class="flex-column per33">
+            <input spellcheck="false" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'utopia.char.name' }}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            <input spellcheck="false" name="system.species" type="text" value="{{actor.system.species}}" placeholder="{{ localize 'utopia.char.species' }}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            <input name="system.difficulty" type="number" {{#unless actor.system.edit}}disabled{{/unless}}>
+        </div>
+        <div class="flexCVert flexCHor per33">
+            <img class="Cliped-image" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+        </div>
+        <div class="pad editModeNPC smltext smlcheck">
+            <div>
+                {{ localize 'utopia.char.edit' }}
+                <input  name="system.edit" type="checkbox" {{checked actor.system.edit}}/>
+            </div>
+            {{#if actor.system.edit}}
+                <div>
+                    {{localize 'utopia.char.autoChalc'}}
+                    <input  name="system.autoChalc" type="checkbox" {{checked actor.system.autoChalc}}/>
+                </div>
+                <div>
+                    {{localize 'utopia.npc.showTraits'}}
+                    <input  name="system.showTraits" type="checkbox" {{checked actor.system.showTraits}}/>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    <div class="pad flex-row">
+        <div class="flexCVert flex-column flexCHor per33 in-cha6">
+            {{#each npc.first as |name|}}
+                {{#with (lookup @root.actor.system name) as |stat|}}
+                <div class="flexCVert mar7d5">
+                    {{ localize (concat "utopia.char." name) }}
+                    <input class="edit-rel select-all" name="system.{{name}}.value" type="text" value="{{stat.value}}"/>
+                    /
+                    <input class="edit-rel select-all"  name="system.{{name}}.max" type="text" value="{{stat.max}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                </div>
+                {{/with}}
+            {{/each}}
+        </div>
+        <div class="flexCVert flex-column flexCHor per33 in-cha6">
+            {{#each npc.block as |name|}}
+                <div>
+                    {{ localize (concat "utopia.char." name) }}:
+                    <input spellcheck="false" name="system.{{name}}" type="text" value="{{lookup @root.actor.system name}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                </div>
+            {{/each}}
+            <div>
+                {{ localize 'utopia.char.reactions' }}:
+                <input class="edit-rel select-all" name="system.reactions" type="text" value="{{actor.system.reactions}}" {{#unless actor.system.edit}}disabled{{/unless}}/> 
+            </div>
+        </div>
+        <div class="flexCVert flex-column flexCHor per33 in-cha6">
+            {{#each charConstr.speed as |obj t|}}
+                <div class="def">
+                    <i class="fas fa-solid {{obj.icon}}"></i>
+                    <input name="system.speed.{{t}}" type="number" value="{{lookup @root.actor.system.speed t}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="pad flexCVert flexCHor flex-column">
+        <div>
+            {{localize 'utopia.npc.defences'}}
+        </div>
+        <div class="flexCVert f-even in-cha6 per100">
+            {{#each charConstr.def as |obj t|}}
+                <div class="def">
+                    <i class="fas fa-solid {{obj.icon}}"></i>
+                    <input name="system.def.{{t}}" type="number" value="{{lookup @root.actor.system.def t}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="pad flexCVert flexCHor wrap">
+        {{#if actor.system.showTraits}}
+            {{#each charConstr.traits as |obj t|}}
+            {{#with (lookup ../actor.system.traits t) as |trait|}}
+                <div class="pad flexCVert flexCHor flex-column in-cha6">
+                    <div class="inline f-even" data-value="{{trait.mod}}">
+                        <a class="trait-roll">{{localize (concat "utopia.traits." t)}}</a>
+                        <input class="edit-rel select-all" name="system.traits.{{t}}.mod" type="text" value="{{trait.mod}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                    </div>
+                    {{#each obj.subTraits as |sub|}}
+                    {{#with (lookup @root.actor.system.subtraits sub) as |subtrait|}}
+                        <div class="smltext inline f-even smlcheck" data-value="{{subtrait.mod}}">
+                            <a class="trait-roll">{{localize (concat "utopia.subtraits." sub)}}</a>
+                            <input class="edit-rel select-all" name="system.subtraits.{{sub}}.mod" type="text" value="{{subtrait.mod}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                        </div>
+                    {{/with}}
+                    {{/each}}
+                </div>
+            {{/with}}
+            {{/each}}
+        {{/if}}
+    </div>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="pad tabs sheet-tabs " data-group="primary">
+        <a class="item active" data-tab="inventory" >{{ localize "utopia.char.inv" }}</a>
+        <a class="item" data-tab="features">{{ localize "utopia.char.feat" }}</a>
+        <a class="item" data-tab="effects">{{ localize "utopia.char.effect" }}</a>
+    </nav>
+    <section class="sheet-body">
+        <div class="tab" data-tab="inventory">
+            {{> "systems/utopia/templates/actor/parts/inventory-block.hbs"}}
+        </div>
+        <div class="tab" data-tab="features">
+            {{> "systems/utopia/templates/actor/parts/features-block.hbs"}}
+        </div>
+        <div class="tab" data-tab="effects">
+            {{> "systems/utopia/templates/actor/parts/effects-block.hbs"}}
+        </div>
+    </section>
+
+</form>

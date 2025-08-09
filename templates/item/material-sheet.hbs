@@ -1,0 +1,17 @@
+<form class="{{cssClass}} text whiteForm" autocomplete="off">
+{{> "systems/utopia/templates/item/parts/header-weight.hbs" }}
+<div class="tab" data-tab="settings">
+    {{!-- Settings --}}
+    <div class="pad flex-column in-square">
+        <div class="pad flexCVert f-space">
+            {{localize "utopia.item.type"}}
+            <select class="" value="{{item.system.type}}" name="system.type" data-dtype="{{item.system.type}}">
+                {{selectOptions config.materialType selected=item.system.type localize=true}}
+            </select>
+        </div>
+        
+        
+    </div>
+</div>
+{{> "systems/utopia/templates/item/parts/footer-weight.hbs" }}
+</form>

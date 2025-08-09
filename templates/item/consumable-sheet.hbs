@@ -1,0 +1,32 @@
+<form class="{{cssClass}} text whiteForm" autocomplete="off">
+{{> "systems/utopia/templates/item/parts/header-weight.hbs" }}
+<div class="tab" data-tab="settings">
+    {{!-- Settings --}}
+    <div class="pad flex-column in-square">
+        <div class="pad flexCVert f-space">
+            {{localize "utopia.item.type"}}
+            <select class="" value="{{item.system.type}}" name="system.type" data-dtype="{{item.system.type}}">
+                {{selectOptions config.consumableType selected=item.system.type localize=true}}
+            </select>
+        </div>
+        <div class="pad flexCVert f-space">
+            {{localize "utopia.item.isConsumed"}}
+            <input type="checkbox" name="system.consumable" {{checked item.system.consumable}}/>
+        </div>
+        {{#if item.system.consumable}}
+            <div class="pad flexCVert f-space in-cha6">
+                {{localize "utopia.item.uses"}}
+                <div>
+                    <input type="number" name="system.uses.value" value="{{item.system.uses.value}}"/>
+                    &nbsp;
+                    /
+                    &nbsp;
+                    <input type="number" name="system.uses.max" value="{{item.system.uses.max}}"/>
+                </div>
+            </div>
+        {{/if}}
+        
+    </div>
+</div>
+{{> "systems/utopia/templates/item/parts/footer-weight.hbs" }}
+</form>

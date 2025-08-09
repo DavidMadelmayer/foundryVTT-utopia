@@ -1,0 +1,20 @@
+<div class="itemRow item rightmenu" data-item-id="{{item._id}}">
+    {{> "systems/utopia/templates/actor/parts/item-Header.hbs" item=item}}
+    <div class="per45">
+        {{ localize 'utopia.char.actionAbrv' }}: {{item.system.actionCost}}
+        {{ localize 'utopia.char.staminaAbrv' }}: {{item.system.staminaCost}}
+        {{#if item.system.hasDmg}}{{ localize 'utopia.char.damageAbrv' }}: {{item.system.damage}}{{/if}}
+        {{#if item.system.range}}{{ localize 'utopia.char.RangeAbrv' }}: {{item.system.range}}{{/if}}
+    </div>
+    <div class="per10">
+        {{#if item.system.isRanged}}
+            <a class="weapon-atk" data-action="hit" title="{{ localize 'utopia.item.hit' }}"><i class="fa-solid fa-bullseye-arrow"></i></a>
+            &nbsp;
+            <a class="weapon-atk" data-action="dmg" title="{{ localize 'utopia.item.damage' }}"><i class="blk-icon fas fa-solid fa-sword"></i></a>
+            &nbsp;
+        {{else}}
+            <a class="weapon-atk" data-action="dmg" title="{{ localize 'utopia.item.attack' }}"><i class="blk-icon fas fa-solid fa-sword"></i></a>
+            &nbsp;
+        {{/if}}
+    </div>
+</div>

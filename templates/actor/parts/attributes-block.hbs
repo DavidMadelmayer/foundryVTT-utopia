@@ -1,0 +1,229 @@
+<div class="flex-row">
+    <div class="per50">
+        <div class="pad flexCVert">
+            <span class="flexCVert mar7d5 per50 underline">
+                {{ localize 'utopia.char.block' }}
+                {{#if actor.system.edit}}
+                    <input spellcheck="false" name="system.base.block" type="text" value="{{actor.system.base.block}}"/>
+                {{else}}
+                    {{actor.system.block}}
+                {{/if}}
+            </span>
+            <span class="flexCVert mar7d5 per50 underline">
+                {{ localize 'utopia.char.dodge' }}
+                {{#if actor.system.edit}}
+                    <input spellcheck="false" name="system.base.dodge" type="text" value="{{actor.system.base.dodge}}"/>
+                {{else}}
+                    {{actor.system.dodge}}
+                {{/if}}
+            </span>
+        </div>
+        <div class="pad flexCVert">
+            <!-- DHP & SHP -->
+            <span class="flexCVert mar7d5 per50 underline">
+                {{ localize 'utopia.char.dhp' }}
+                <input class="edit-rel select-all" name="system.dhp.value" type="text" value="{{actor.system.dhp.value}}"/>
+                /
+                <input class="edit-rel select-all"  name="system.dhp.max" type="text" value="{{actor.system.dhp.max}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </span>
+            <span class="flexCVert mar7d5 per50 underline">
+                {{ localize 'utopia.char.shp' }}
+                <input class="edit-rel select-all" name="system.shp.value" type="text" value="{{actor.system.shp.value}}"/>
+                /
+                <input class="edit-rel select-all"  name="system.shp.max" type="text" value="{{actor.system.shp.max}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </span>
+        </div>
+        <div class="">
+            <!-- Traits & subtraits -->
+            <div class="pad in-cha6 flexCHor f-even textC">
+                <div class="underline inline in-cha6 per33">
+                    {{localize "utopia.traits.points"}}
+                    <input name="system.traits.points" type="number" value="{{actor.system.traits.points}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+                </div>
+            </div>
+            {{#each charConstr.traits as |obj t|}}
+            {{#with (lookup ../actor.system.traits t) as |trait|}}
+                <div class="pad flexCVert in-cha6">
+                    <div class="flexCVert underline per50 f-even" data-value="{{trait.mod}}">
+                        <a class="trait-roll">{{localize (concat "utopia.traits." t)}}</a>
+                        <input class="edit-rel select-all" name="system.traits.{{t}}.value" type="text" value="{{trait.value}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                        <input class="edit-rel select-all" name="system.traits.{{t}}.mod" type="text" value="{{trait.mod}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                    </div>
+                    <div class="per50">
+                        {{#each obj.subTraits as |sub|}}
+                        {{#with (lookup @root.actor.system.subtraits sub) as |subtrait|}}
+                            <div class="smltext flexCVert f-even smlcheck" data-value="{{subtrait.mod}}">
+                                <input class="subtrait" data-subtrait="{{sub}}" name="system.subtraits.{{sub}}.chk"  type="checkbox" {{checked subtrait.chk}}/>
+                                <a class="trait-roll">{{localize (concat "utopia.subtraits." sub)}}</a>
+                                <input class="edit-rel select-all" name="system.subtraits.{{sub}}.value" type="text" value="{{subtrait.value}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                                <input class="edit-rel select-all" name="system.subtraits.{{sub}}.mod" type="text" value="{{subtrait.mod}}" {{#unless @root.actor.system.edit}}disabled{{/unless}}/>
+                            </div>
+                        {{/with}}
+                        {{/each}}
+                    </div>
+                </div>
+            {{/with}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="per50">  
+        <div class="pad flexCVert in-cha4 underline f-space">
+            <!-- Defence -->
+            {{ localize 'utopia.char.def' }}
+            {{#each charConstr.def as |obj t|}}
+                <div class="def">
+                    <i class="fas fa-solid {{obj.icon}}"></i>
+                    <input name="system.def.{{t}}" type="number" value="{{lookup @root.actor.system.def t}}" />
+                </div>
+            {{/each}}
+        </div>
+        <div class="pad flexCVert in-cha6">
+            <!-- XP/Level & stamina -->
+            <span class="flexCVert mar7d5 per50 underline f-even">
+                {{ localize 'utopia.char.xp' }}
+                <input class="edit-rel select-all" name="system.xp.value" type="text" value="{{actor.system.xp.value}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+                /
+                <input class="edit-rel select-all" name="system.xp.max" type="text" value="{{actor.system.xp.max}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </span>
+            <span class="flexCVert mar7d5 per50 underline f-even">
+                {{ localize 'utopia.char.stamina' }}
+                <input class="edit-rel select-all" name="system.stamina.value" type="text" value="{{actor.system.stamina.value}}"/>
+                /
+                <input class="edit-rel select-all" name="system.stamina.max" type="text" value="{{actor.system.stamina.max}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </span>
+        </div>
+        <div class="pad flexCVert textC in-cha6 flexCHor">
+            <!-- Points -->
+            <div class="inline underline per33" >
+                {{ localize 'utopia.talent.points' }}
+                <input name="system.talent.points" type="number" value="{{actor.system.talent.points}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+        </div>
+        <div class="pad flexCVert textC in-cha6">
+            <!-- talent -->
+            <div class="mar7d5 inline underline per33">
+                {{ localize 'utopia.talent.body' }}
+                <input name="system.talent.body" type="number" value="{{actor.system.talent.body}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+            <div class="mar7d5 inline underline per33">
+                {{ localize 'utopia.talent.mind' }}
+                <input name="system.talent.mind" type="number" value="{{actor.system.talent.mind}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+            <div class="mar7d5 inline underline per33">
+                {{ localize 'utopia.talent.soul' }}
+                <input name="system.talent.soul" type="number" value="{{actor.system.talent.soul}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+        </div>
+        <div class="">
+            <!-- con / end / Eff -->  
+            <div class="pad flexCVert in-cha6 underline f-space">
+                {{ localize 'utopia.attributes.con' }}
+                <input name="system.attributes.con" type="number" value="{{actor.system.attributes.con}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>  
+            <div class="pad flexCVert in-cha6 underline f-space">
+                {{ localize 'utopia.attributes.end' }}
+                <input name="system.attributes.end" type="number" value="{{actor.system.attributes.end}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>  
+            <div class="pad flexCVert in-cha6 underline f-space">
+                {{ localize 'utopia.attributes.eff' }}
+                <input name="system.attributes.eff" type="number" value="{{actor.system.attributes.eff}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>  
+        </div>
+        <div class="pad flexCVert in-cha4 underline f-space">
+            <!-- Travel -->  
+            {{ localize 'utopia.char.travel' }}
+            <div class="def">
+                <i class="fas fa-solid fa-mountains"></i>
+                <input name="system.speed.land" type="number" value="{{actor.system.speed.land}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+            <div class="def">
+                <i class="fas fa-solid fa-wave"></i>
+                <input name="system.speed.water" type="number" value="{{actor.system.speed.water}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+            <div class="def">
+                <i class="fas fa-solid fa-cloud"></i>
+                <input name="system.speed.air" type="number" value="{{actor.system.speed.air}}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+        </div>
+
+        <div class="pad">
+            <!-- languages -->  
+            {{ localize 'utopia.char.lang' }}:
+            {{#if actor.system.edit}}
+                <a class="editLang" data-action="create"><i class="fa-solid fa-plus"></i></a>
+            {{/if}}
+            <div>
+                {{#each actor.system.lang as |lang|}}
+                        {{#if @root.actor.system.edit}}
+                        <div class="flexCVert">
+                            <input class="editLangIN" data-action="edit" data-index="{{@index}}" name="system.languages.{{@index}}" type="text" value="{{lang}}"/>
+                            |
+                            <a class="editLang" data-action="delete" data-index="{{@index}}"><i class="fa-solid fa-trash" style="color: #ee3227;"></i></a>
+                        </div>
+                        {{else}}
+                            {{lang}} | 
+                        {{/if}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="pad flexCVert underline">
+            <!-- Money -->
+            {{#moneyName}}{{/moneyName}}:
+            
+            <input class="edit-rel select-all" name="system.money" type="text" value="{{actor.system.money}}"/>
+        </div>
+
+    </div>
+</div>
+<div>
+    {{!-- favored Items --}}
+    <div class="flexCVert f-even in-cha4">
+        <div class="underline">
+            {{ localize 'utopia.item.favor' }}
+        </div>
+        <div class="inline underline textC">
+            {{ localize 'utopia.char.diceOfFavor' }}:
+            <input class="edit-rel select-all" name="system.diceOfFavor" type="text" value="{{actor.system.diceOfFavor}}"/>
+            /
+            (<input class="edit-rel select-all" name="system.tempDOfFav" type="text" value="{{actor.system.tempDOfFav}}" {{#unless actor.system.edit}}disabled{{/unless}}/>)
+        </div>
+        <div class="inline underline">
+            {{ localize 'utopia.char.reactions' }}:
+            <input class="edit-rel select-all" name="system.reactions" type="text" value="{{actor.system.reactions}}"/> 
+        </div>
+    </div>
+    <div class="flex-column">
+        <div class="flexCVert smltext smlcheck">
+            {{ localize 'utopia.char.quickActions' }}
+            <input  name="system.quickActions" type="checkbox" {{checked actor.system.quickActions}}/>
+        </div>
+        <div class="flexCVert f-even wrap">
+            {{#if actor.system.quickActions}}
+                {{!-- <div class="flexCVert f-space">
+                    <a class=""><i class="fas fa-solid fa-mountains"></i>{{ localize 'utopia.action.travel' }}</a>
+                </div> --}}
+                {{#each charConstr.quickActions as |obj t|}}
+                    <a class="quickAction" data-action="{{t}}">{{localize (concat "utopia.action." t)}}</a>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+    
+    <section class="pad itemColumn item-list">
+        {{#each favWeapon as |item|}}
+            {{> "systems/utopia/templates/actor/parts/weapon-partial.hbs" item=item}}
+        {{/each}}
+        {{#each favEquipment as |item|}}
+             {{> "systems/utopia/templates/actor/parts/equipment-partial.hbs" item=item}}
+        {{/each}}
+        {{#each favConsumable as |item|}}
+             {{> "systems/utopia/templates/actor/parts/consumable-partial.hbs" item=item}}
+        {{/each}}
+        {{#each favTalent as |item|}}
+            {{> "systems/utopia/templates/actor/parts/talent-partial.hbs" item=item}}
+        {{/each}}
+        {{#each favMaterial as |item|}}
+            {{> "systems/utopia/templates/actor/parts/material-partial.hbs" item=item}}
+        {{/each}}
+    </section>
+</div>

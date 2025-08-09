@@ -1,0 +1,33 @@
+<div class="flex-column">
+    <div class="itemColumn item-list">
+        {{!-- Talent Trees --}}
+        <div class="itemRow bold">
+            <div class="per45">
+                {{ localize 'utopia.item.talentTree' }}
+            </div>
+            <div class="per45">
+                {{ localize 'utopia.item.description' }}
+            </div>
+            <div class="per10">
+                {{ localize 'utopia.char.action' }}
+            </div>
+        </div>
+        {{#each talentTree as |item|}}
+            {{> "systems/utopia/templates/actor/parts/talentTree-partial.hbs" item=item}}
+        {{/each}}
+
+        {{!-- Talents --}}
+        <div class="itemRow bold">
+            <div class="per45">
+                {{ localize 'utopia.item.talent' }}
+            </div>
+            <div class="per45">
+            </div>
+            <div class="per10">
+            </div>
+        </div>
+        {{#each talent as |item|}}
+            {{> "systems/utopia/templates/actor/parts/talent-partial.hbs" item=item}}
+        {{/each}}
+    </div>
+</div>

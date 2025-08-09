@@ -1,0 +1,29 @@
+    <div class="tab" data-tab="effects">
+        {{!-- Active effect --}}
+        <div class="pad flexCVert f-space">
+            <span class="bold">{{ localize 'utopia.item.acteffect' }}</span> 
+            <a class="effect-control" data-action="create" title="{{ localize 'utopia.item.addEffect' }}"><i class="fas fa-plus"></i></a>
+        </div>
+        {{#each effects as |effect|}}
+            <div data-effect-id="{{effect._id}}" class="itemRow pad flexCVert f-space">
+                <div>
+                    <img class="inv-image" src="{{effect.img}}" alt="">
+                    &nbsp;
+                    <h4>{{effect.name}}</h4>
+                </div>
+                <div>
+                    {{!-- {{#if effect.active}}
+                        <a class="effect-control" data-action="toggle" title="{{ localize 'utopia.item.toggleEffect' }}"><i class="fa-solid fa-toggle-large-on"></i></a>
+                    {{else}}
+                        <a class="effect-control" data-action="toggle" title="{{ localize 'utopia.item.toggleEffect' }}"><i class="fa-solid fa-toggle-large-off"></i></a>
+                    {{/if}}
+                    &nbsp; --}}
+                    <a class="effect-control" data-action="edit" title="{{ localize 'utopia.item.editEffect' }}"><i class="fas fa-edit"></i></a>
+        	        &nbsp;
+                    <a class="effect-control" data-action="delete" title="{{ localize 'utopia.item.delEffect' }}"><i class="fas fa-trash" style="color: #ee3227;"></i></a>
+                    &nbsp;
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</section>

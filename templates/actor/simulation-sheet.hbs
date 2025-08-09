@@ -1,0 +1,74 @@
+<form class="actor-sheet text in-square whiteForm {{cssClass}}" autocomplete="off">
+    <div class="flex-row">
+        <div class="flexCVert textC pad in-botm per33">
+            {{ localize 'utopia.char.name' }}
+            <input spellcheck="false" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'utopia.char.name' }}"/>
+        </div>
+        <div class="flexCVert flexCHor per33">
+            <img class="Cliped-image" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+        </div>
+        <div class="in-botm per33 flex-column">
+
+        </div>
+    </div>
+    {{!-- 2 Combat Parties --}}
+    <div class="flex-row simborder">
+        <div id="startFriend" class="per50">
+            <div>
+                {{ localize 'utopia.char.friend' }}
+                <a class="add-simItem" data-party="friend"><i class="fas fa-plus"></i></a>
+            </div>
+            {{#each simItemFriend as |item|}}
+                {{> "systems/utopia/templates/actor/parts/simItem-partial.hbs" item=item}}
+            {{/each}}
+        </div>
+        <div id="startFoe" class="per50">
+            <div>
+                {{ localize 'utopia.char.foe' }}
+                <a class="add-simItem" data-party="foe"><i class="fas fa-plus"></i></a>
+            </div>
+            {{#each simItemFoe as |item|}}
+                {{> "systems/utopia/templates/actor/parts/simItem-partial.hbs" item=item}}
+            {{/each}}
+        </div>
+    </div>
+    <button class="simulate blk-icon">
+        {{ localize 'utopia.sim.simulate' }}
+    </button>
+    {{!-- Result in 2 Rows--}}
+    <div class="flex-row simborder textC">
+        <div id="endFriend" class="per50">
+            <span class="simheader">{{ localize 'utopia.char.friend' }}</span>
+            {{!-- <div class="simRound">
+                <span>Round 1</span>
+                <div class="simResult">
+                    <div>
+                        <div class="HPbar">
+                            <div class="HPslider" style="width: 100px;"></div>
+                            <div class="HPvalue">10/10 SHP</div>
+                        </div>
+                        <div class="HPbar">
+                            <div class="HPslider" style="width: 100px;"></div>
+                            <div class="HPvalue">10/10 DHP</div>
+                        </div>
+                        <div>Name</div>
+                    </div>
+                    <div>
+                        <div class="HPbar">
+                            <div class="HPslider" style="width: 0px;"></div>
+                            <div class="HPvalue">0/10 SHP</div>
+                        </div>
+                        <div class="HPbar">
+                            <div class="HPslider" style="width: 0px;"></div>
+                            <div class="HPvalue">0/10 DHP</div>
+                        </div>
+                        <div>Name2</div>
+                    </div>
+                </div>
+            </div> --}}
+        </div>
+        <div id="endFoe" class="per50">
+            <b>{{ localize 'utopia.char.foe' }}</b>
+        </div>
+    </div>
+</form>

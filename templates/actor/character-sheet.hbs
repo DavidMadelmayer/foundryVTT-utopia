@@ -1,0 +1,90 @@
+<form class="actor-sheet text in-square whiteForm {{cssClass}}" autocomplete="off">
+    <div class="pad editMode smltext smlcheck">
+        {{ localize 'utopia.char.edit' }}
+        <input  name="system.edit" type="checkbox" {{checked actor.system.edit}}/>
+        {{#if actor.system.edit}}
+            &nbsp;
+            {{localize 'utopia.char.autoChalc'}}
+            <input  name="system.autoChalc" type="checkbox" {{checked actor.system.autoChalc}}/>
+        {{/if}}
+    </div>
+    <div class="flex-row">
+        <div class="flexCVert textC pad in-botm per33">
+            {{ localize 'utopia.char.name' }}
+            <input spellcheck="false" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'utopia.char.name' }}"/>
+        </div>
+        <div class="flexCVert flexCHor per33">
+            <img class="Cliped-image" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+        </div>
+        <div class="in-botm per33 flex-column flexCHor">
+            <div class="flexCVert textC">
+                <!-- level -->
+                {{ localize 'utopia.char.level' }}: 
+                <input name="system.level" type="number" value="{{actor.system.level}}" placeholder="{{ localize 'utopia.char.level' }}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+            <div class="flexCVert textC pad">
+                <!-- species -->
+                {{ localize 'utopia.char.species' }}: 
+                <input spellcheck="false" name="system.species" type="text" value="{{actor.system.species}}" placeholder="{{ localize 'utopia.char.species' }}" {{#unless actor.system.edit}}disabled{{/unless}}/>
+            </div>
+            
+        </div>
+    </div>
+
+    {{!-- Character Sheet Navigation --}}
+    <nav class="tabs sheet-tabs " data-group="primary">
+        <a class="item active" data-tab="attributes">{{ localize "utopia.char.att" }}</a>
+        <a class="item" data-tab="inventory" >{{ localize "utopia.char.inv" }}</a>
+        <a class="item" data-tab="features">{{ localize "utopia.char.feat" }}</a>
+        <a class="item" data-tab="effects">{{ localize "utopia.char.effect" }}</a>
+    </nav>
+
+    <section class="sheet-body">
+        <div class="tab" data-tab="attributes">
+            {{> "systems/utopia/templates/actor/parts/attributes-block.hbs"}}
+        </div>
+        <div class="tab" data-tab="inventory">
+            {{> "systems/utopia/templates/actor/parts/inventory-block.hbs"}}
+        </div>
+        <div class="tab" data-tab="features">
+            {{> "systems/utopia/templates/actor/parts/features-block.hbs"}}
+        </div>
+        <div class="tab" data-tab="effects">
+            {{> "systems/utopia/templates/actor/parts/effects-block.hbs"}}
+        </div>
+    </section>
+    {{#if actor.system.edit}}
+        {{!-- Test Section --}}
+        <div class="flex-row textC ">
+            {{ localize 'utopia.char.hiddenData' }}
+        </div>
+        <div class="flex-row textC in-botm in-cha6">
+            <div class="flex-column per33 flexCVert">
+                <div>
+                    Melee StamRed
+                    <input type="number" name="system.mods.melee.StamRedu" value="{{actor.system.mods.melee.StamRedu}}"/>
+                </div>
+                <div>
+                    Turn Actions
+                    <input type="number" name="system.actions" value="{{actor.system.actions}}">
+                </div>
+            </div>
+            <div class="flex-column per33 flexCVert">
+                <div>
+                    Ranged StamRed
+                    <input type="number" name="system.mods.ranged.StamRedu" value="{{actor.system.mods.ranged.StamRedu}}"/>
+                </div>
+            </div>
+            <div class="flex-column per33 flexCVert">
+                <div>
+                    Effect StamRed
+                    <input type="number" name="system.mods.effect.StamRedu" value="{{actor.system.mods.effect.StamRedu}}"/>
+                </div>
+                <div>
+                    Spellcap
+                    <input type="number" name="system.mods.effect.Spellcap" value="{{actor.system.mods.effect.Spellcap}}"/>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</form>

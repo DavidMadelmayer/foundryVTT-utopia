@@ -1,0 +1,17 @@
+<div class="flexCVert flexCHor simAction gap4 simbackgr item rightmenu" data-item-id="{{item._id}}">
+    {{#if (eq item.system.IFF false)}}
+        <a class="sim-switchTeam" title="{{ localize 'utopia.sim.IFF' }}"><i class="fa-solid fa-arrow-left"></i></a>
+    {{/if}}
+    <a class="item-edit">
+        {{item.name}}
+    </a>
+    <div class="in-cha6 in-spin smltext">
+        {{ localize 'utopia.sim.count' }}:
+        <input min="1" class="inline-edit" name="system.amount" type="number" value="{{item.system.amount}}"/>
+        {{ localize 'utopia.sim.arrives' }}:
+        <input min="1" class="inline-edit" name="system.arrives" type="number" value="{{item.system.arrives}}"/>
+    </div>
+    {{#if (eq item.system.IFF true)}}
+        <a class="sim-switchTeam" title="{{ localize 'utopia.sim.FOE' }}"><i class="fa-solid fa-arrow-right"></i></a>
+    {{/if}}
+</div>

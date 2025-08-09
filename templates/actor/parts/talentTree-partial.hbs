@@ -1,0 +1,23 @@
+<div class="itemRow item rightmenu" data-item-id="{{item._id}}">
+    <div class="per45 text-over">
+        {{#if item.system.colorIcon}}
+            <div class="imageMask inv-image" style="background-color: {{item.system.color}}; mask-image: url({{item.img}}); -webkit-mask-image: url({{item.img}});"></div>
+        {{else}}
+            <img class="inv-image" src="{{item.img}}" alt="{{item.name}}">
+        {{/if}}
+        &nbsp;
+        <a class="item-edit">
+            {{item.name}}
+        </a>
+        |
+        {{#if item.system.type}}
+            {{localize (concat 'utopia.type.' item.system.type)}}
+        {{/if}}
+    </div>
+    <div class="per45">
+        Description
+    </div>
+    <div class="per10">
+        Action
+    </div>
+</div>

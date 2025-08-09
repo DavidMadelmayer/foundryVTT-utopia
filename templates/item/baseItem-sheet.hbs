@@ -1,0 +1,57 @@
+<form class="{{cssClass}} text" autocomplete="off">
+    <header class="flexCVert">
+        <img class="" src="{{item.img}}" title="{{item.name}}" data-edit="img" height="64" width="64"/>
+        <div class="pad flex-column in-square in-botm">
+            <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'utopia.char.name' }}"/>
+            &nbsp;{{localize (concat 'utopia.type.' item.system.type)}}
+        </div>
+    </header>
+    <nav class="tabs sheet-tabs" data-group="primary">
+        <a class="item active" data-tab="attributes">{{ localize "utopia.char.att" }}</a>
+        <a class="item" data-tab="settings" >{{ localize "utopia.item.sett" }}</a>
+        <a class="item" data-tab="effects">{{ localize "utopia.char.effect" }}</a>
+    </nav>
+    <section class="sheet-body">
+        <div class="tab" data-tab="attributes">
+            <div class="flex">
+                {{!-- attributes --}}
+                <div class="pad per25 flex-column in-square">  
+                    {{!-- Sidebare with weight, value, amount --}}
+                    <div class="pad inline">
+                        {{ localize 'utopia.item.amount' }}
+                        <input name="system.amount" type="number" value="{{item.system.amount}}"/>
+                    </div>
+                    <div class="pad inline">
+                        {{ localize 'utopia.item.weight' }}
+                        <input name="system.value" type="number" value="{{item.system.value}}"/>
+                    </div>        
+                    <div class="pad inline">
+                        {{ localize 'utopia.item.weight' }}
+                        <input name="system.weight" type="number" value="{{item.system.weight}}"/>
+                    </div>
+                </div>
+                <div class="per75">
+                    {{!-- desciption --}}
+                    {{editor description target="system.description" button=true owner=owner editable=editable}}
+                </div>
+            </div>
+        </div>
+        <div class="tab" data-tab="settings">
+            {{!-- Settings --}}
+            <div class="pad flex-column in-square">
+                <div class="pad flexCVert f-space">
+                    {{localize "utopia.item.type"}}
+                    <select class="" value="{{item.system.type}}" name="system.type" data-dtype="{{item.system.type}}">
+                        {{selectOptions config.materialType selected=item.system.type localize=true}}
+                    </select>
+                </div>
+                
+                
+            </div>
+        </div>
+        <div class="tab" data-tab="effects">
+            {{!-- Active effect --}}
+            
+        </div>
+    </section>
+</form>

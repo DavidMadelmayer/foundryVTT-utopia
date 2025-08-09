@@ -1,0 +1,94 @@
+<form class="actor-sheet text in-square whiteForm {{cssClass}}" autocomplete="off">
+    {{#isGM}}
+        <div class="pad editMode smltext smlcheck">
+            {{ localize 'utopia.shop.isShop' }}
+            <input  name="system.isShop" type="checkbox" {{checked actor.system.isShop}}/>
+            {{ localize 'utopia.shop.infStock' }}
+            <input  name="system.infStock" type="checkbox" {{checked actor.system.infStock}}/>
+        </div>
+    {{/isGM}}
+    <div class="flex-row">
+        <div class="flexCVert textC pad in-botm per33">
+            {{#isGM}}
+                {{ localize 'utopia.char.name' }}
+                <input spellcheck="false" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'utopia.char.name' }}"/>
+            {{/isGM}}
+        </div>
+        <div class="flexCVert flexCHor per33">
+            <img class="Cliped-image" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+        </div>
+        <div class="in-botm per33 flex-column flexCHor">
+            {{#ifCond actor.system.isShop "!==" true}}
+                <div class="flexCVert textC">
+                    <!-- Money -->
+                    {{#moneyName}}{{/moneyName}}:
+                    <input name="system.money" type="number" value="{{actor.system.money}}" placeholder="{{ localize 'utopia.char.money' }}"/>
+                    <a class="loot-money" title="{{ localize 'utopia.shop.lootMoney' }}"><i class="fa-solid fa-coins"></i></a>
+                </div>
+            {{/ifCond}}
+        </div>
+    </div>
+    <div>
+        <div class="flex-column">
+            <div class="itemColumn item-list">
+                {{!-- weapons --}}
+                <div class="itemRow bold">
+                    <div class="per45">
+                        {{ localize 'utopia.item.weapon' }}
+                    </div>
+                    <div class="per45">
+                        {{ localize 'utopia.item.description' }}
+                    </div>
+                    <div class="per10">
+                        {{ localize 'utopia.char.action' }}
+                    </div>
+                </div>
+                {{#each weapons as |item|}}
+                    {{> "systems/utopia/templates/actor/parts/shop-item-partial.hbs" item=item}}
+                {{/each}}
+
+                {{!-- equipment --}}
+                <div class="itemRow bold">
+                    <div class="per45">
+                        {{ localize 'utopia.item.equipment' }}
+                    </div>
+                    <div class="per45">
+                    </div>
+                    <div class="per10">
+                    </div>
+                </div>
+                {{#each equipment as |item|}}
+                    {{> "systems/utopia/templates/actor/parts/shop-item-partial.hbs" item=item}}
+                {{/each}}
+
+                {{!-- consumables --}}
+                <div class="itemRow bold">
+                    <div class="per45">
+                        {{ localize 'utopia.item.consumable' }}
+                    </div>
+                    <div class="per45">
+                    </div>
+                    <div class="per10">
+                    </div>
+                </div>
+                {{#each consumable as |item|}}
+                    {{> "systems/utopia/templates/actor/parts/shop-item-partial.hbs" item=item}}
+                {{/each}}
+
+                {{!-- materials --}}
+                <div class="itemRow bold">
+                    <div class="per45">
+                        {{ localize 'utopia.item.material' }}
+                    </div>
+                    <div class="per45">
+                    </div>
+                    <div class="per10">
+                    </div>
+                </div>
+                {{#each material as |item|}}
+                    {{> "systems/utopia/templates/actor/parts/shop-item-partial.hbs" item=item}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</form>

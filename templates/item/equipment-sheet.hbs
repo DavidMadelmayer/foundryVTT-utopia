@@ -1,0 +1,31 @@
+<form class="{{cssClass}} text whiteForm" autocomplete="off">
+{{> "systems/utopia/templates/item/parts/header-weight.hbs" }}
+<div class="tab" data-tab="settings">
+    {{!-- Settings --}}
+    <div class="pad flex-column in-square">
+        <div class="pad flexCVert f-space">
+            {{localize "utopia.item.type"}}
+            <select class="" value="{{item.system.type}}" name="system.type" data-dtype="{{item.system.type}}">
+                {{selectOptions config.equipmentType selected=item.system.type localize=true}}
+            </select>
+        </div>
+        {{#if (eq item.system.type "armor")}}
+            <div class="pad flexCVert f-space">
+                {{localize "utopia.item.slot"}}
+                <select class="" value="{{item.system.slot}}" name="system.slot" data-dtype="{{item.system.slot}}">
+                    {{selectOptions config.equipmentSlot selected=item.system.slot localize=true}}
+                </select>
+            </div>
+            <div class="pad flexCVert f-space in-33R">
+                {{localize "utopia.item.blockRating"}}
+                <input type="text" name="system.block" value="{{item.system.block}}"/>
+            </div>
+            <div class="pad flexCVert f-space in-33R">
+                {{localize "utopia.item.dodgeRating"}}
+                <input type="text" name="system.dodge" value="{{item.system.dodge}}"/>
+            </div>
+        {{/if}}
+    </div>
+</div>
+{{> "systems/utopia/templates/item/parts/footer-weight.hbs" }}
+</form>

@@ -1,0 +1,110 @@
+
+<form class="{{cssClass}} text posrel text whiteForm" autocomplete="off">
+    <header class="flex-column flexCVert in-square in-botm">
+        {{#if item.system.colorIcon}}
+            <div class="imageMask item-image" style="background-color: {{item.system.color}}; mask-image: url({{item.img}}); -webkit-mask-image: url({{item.img}});">
+                <img class="item-image no-border" style="filter: opacity(0);" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+            </div>
+        {{else}}
+            <img class="item-image no-border" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        {{/if}}
+        <input class="item-header textlarge" name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'utopia.char.name' }}"/>
+    </header>
+    <nav class="tabs sheet-tabs" data-group="primary">
+        <a class="item active" data-tab="attributes">{{ localize "utopia.char.att" }}</a>
+        <a class="item" data-tab="settings" >{{ localize "utopia.item.sett" }}</a>
+        <a class="item" data-tab="effects">{{ localize "utopia.char.effect" }}</a>
+    </nav>
+    <section class="sheet-body">
+        <div class="tab" data-tab="attributes">
+            <div>
+                <svg style="position: absolute; height: calc(100% - 138px);" width='100%' height='100%' viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <defs>
+                        <radialGradient id="CenterGradient{{item.id}}">
+                        <stop offset="5%" stop-color="#ffffff88" />
+                        <stop offset="100%" stop-color="{{item.system.color}}" />
+                        </radialGradient>
+                    </defs>
+                    <polygon points="0,0 100,0 100,85 50,100 0,85" fill="{{item.system.color}}"/>
+                    <polygon points="0,0 100,0 100,85 50,100 0,85" fill="url(#CenterGradient{{item.id}})"/>
+                </svg>
+                <div style="position: relative;" class="traittext">
+                    <div class="per100 textC">
+                        {{!-- Description --}}
+                        {{editor description target="system.description" button=true owner=owner editable=editable}}
+                    </div>
+                    <div class="pad flexCVert f-even textlarge">
+                        <div class="flexCVert item-talent">
+                            <i class="fa-solid fa-hand-fist"></i>
+                            <span>{{item.system.cost.body}}</span>
+                        </div>
+                        <div class="flexCVert item-talent">
+                            <i class="fa-solid fa-brain"></i>
+                            <span>{{item.system.cost.mind}}</span>
+                        </div>
+                        <div class="flexCVert item-talent">
+                            <i class="fa-solid fa-fire-flame-simple"></i>
+                            <span>{{item.system.cost.soul}}</span>
+                        </div>
+                    </div>
+                    <div class="pad flexCVert">
+                        {{ localize 'utopia.item.favor' }}
+                        <input name="system.favor" type="checkbox" {{checked item.system.favor}}/>      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab" data-tab="settings">
+            {{!-- Settings --}}
+            <div class="pad flex-column in-square">
+                <div class="pad flexCVert f-space">
+                    {{localize "utopia.item.type"}}
+                    <select class="" value="{{item.system.type}}" name="system.type" data-dtype="{{item.system.type}}">
+                        {{selectOptions config.talentType selected=item.system.type localize=true}}
+                    </select>
+                </div>
+                </div>
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.talent.body"}}
+                    <input min="0" type="number" name="system.cost.body" value="{{item.system.cost.body}}"/>
+                </div>
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.talent.mind"}}
+                    <input min="0" type="number" name="system.cost.mind" value="{{item.system.cost.mind}}"/>
+                </div>
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.talent.soul"}}
+                    <input min="0" type="number" name="system.cost.soul" value="{{item.system.cost.soul}}"/>
+                </div>
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.item.canBeDiabled"}}
+                    <input type="checkbox" name="system.canBeDiabled" {{checked item.system.canBeDiabled}}/>
+                </div>
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.item.canBeTrigged"}}
+                    <input type="checkbox" name="system.canBeTrigged" {{checked item.system.canBeTrigged}}/>
+                </div>
+                
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.item.blockRating"}}
+                    <input type="text" name="system.block" value="{{item.system.block}}"/>
+                </div>
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.item.dodgeRating"}}
+                    <input type="text" name="system.dodge" value="{{item.system.dodge}}"/>
+                </div>
+
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.item.color"}}
+                    <input type="color" name="system.color" value="{{item.system.color}}"/>
+                </div>
+                <div class="pad flexCVert f-space in-33R">
+                    {{localize "utopia.item.colorIcon"}}
+                    <input type="checkbox" name="system.colorIcon" {{checked item.system.colorIcon}}/>
+                </div>
+                
+                
+            </div>
+        </div>
+        {{> "systems/utopia/templates/item/parts/footer-weight.hbs" }}
+</form>

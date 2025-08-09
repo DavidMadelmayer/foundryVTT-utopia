@@ -1,0 +1,105 @@
+<form class="{{cssClass}} text whiteForm" autocomplete="off" >
+    
+    {{!-- Settings --}}
+    <div class="flex-column">
+        <div class="flexCVert in-square in-botm">
+            <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+            {{ localize 'utopia.char.name' }}:
+            <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'utopia.char.name' }}"/>
+        </div>
+        <div class="pad flexCVert in-square in-cha6 gap4">
+            {{!-- HP / Stamina --}}
+            <div>
+                {{ localize 'utopia.char.shp' }}:
+                <input name="system.shp" type="number" value="{{item.system.shp}}"/>
+            </div>
+            <div>
+                {{ localize 'utopia.char.dhp' }}:
+                <input name="system.dhp" type="number" value="{{item.system.dhp}}"/>
+            </div>
+            <div>
+                {{ localize 'utopia.char.stamina'}}:
+                <input name="system.stamina" type="number" value="{{item.system.stamina}}"/>
+            </div>
+        </div>
+        <div class="pad flexCVert in-square in-cha6 gap4">
+            {{!-- Block --}}
+            <div>
+                {{ localize 'utopia.char.block'}}:
+                <input name="system.block" type="text" value="{{item.system.block}}"/>
+            </div>
+            <div>
+                {{ localize 'utopia.char.dodge'}}:
+                <input name="system.dodge" type="text" value="{{item.system.dodge}}"/>
+            </div>
+        </div>
+        <div class="pad flexCVert in-square in-cha4 gap4">
+            {{ localize 'utopia.sim.armor'}}:
+            {{!-- DEF --}}
+            {{#each @root.config.charConstr.def as |obj t|}}
+                <div>
+                    {{ localize (concat 'utopia.type.' t) }}:
+                    <input name="system.def.{{t}}" type="number" value="{{lookup @root.item.system.def t}}"/>
+                </div>
+            {{/each}}
+        </div>
+        <div class="pad flexCVert in-square in-cha6 gap4">
+            {{!-- Actions and Reaction per round --}}
+            <div>
+                {{ localize 'utopia.char.actions' }}:
+                <input name="system.actions" type="number" value="{{item.system.actions}}"/>
+            </div>
+            <div>
+                {{ localize 'utopia.char.reactions' }}:
+                <input name="system.reactions" type="number" value="{{item.system.reactions}}"/>
+            </div>
+        </div>
+    </div>
+    {{!-- Items --}}
+    <div class="">
+        <a class="sim-item" data-action="create"><i class="fa fa-plus"></i></a>
+        {{#each item.system.actionsArr as |obj t|}}
+            <div class="simAction gap4 simbackgr" data-index="{{@index}}">
+                <a class="sim-item" data-action="delete" data-index="{{@index}}"><i class="fa fa-trash" style="color: #ee3227;"></i></a>
+                <div class="inline">
+                    <input name="system.actionsArr.{{@index}}.name" type="text" value="{{obj.name}}" placeholder="{{ localize 'utopia.char.name' }}"/>
+                </div>
+                {{log obj}}
+                <div class="inline">
+                    {{ localize 'utopia.sim.action' }}:
+                    <select value="{{obj.type}}" name="system.actionsArr.{{@index}}.type" data-dtype={{obj.type}}>
+                        {{selectOptions @root.config.sim.action selected=obj.type localize=true}}
+                    </select>
+                </div>
+                <div class="inline in-cha4">
+                    {{ localize 'utopia.sim.stamina' }}:&nbsp;
+                    <input name="system.actionsArr.{{@index}}.stamina" type="number" value="{{obj.stamina}}"/>
+                </div>
+                <div class="inline in-cha4">
+                    {{ localize 'utopia.sim.action' }}:&nbsp;
+                    <input name="system.actionsArr.{{@index}}.action" type="number" value="{{obj.action}}"/>
+                </div>
+                {{#if (eq obj.type "attack")}}
+                    <div class="flex flexCVert in-cha12 gap4">
+                        {{ localize 'utopia.sim.damage' }}:
+                        <input name="system.actionsArr.{{@index}}.damage" type="text" value="{{obj.damage}}" placeholder="{{ localize 'utopia.sim.damage' }}"/>
+                        <select value="{{obj.damageType}}" name="system.actionsArr.{{@index}}.damageType" data-dtype="{{obj.damageType}}">
+                            {{selectOptions @root.config.damageType selected=obj.damageType localize=true}}
+                        </select>
+                    </div>
+                {{else}}
+                    <div class="flex flexCVert in-cha6 gap4">
+                        {{ localize 'utopia.char.shp' }}+
+                        <input name="system.actionsArr.{{@index}}.shp" type="number" value="{{obj.shp}}" placeholder="{{ localize 'utopia.char.shp' }}"/>
+                        {{ localize 'utopia.char.dhp' }}+
+                        <input name="system.actionsArr.{{@index}}.dhp" type="number" value="{{obj.dhp}}" placeholder="{{ localize 'utopia.char.dhp' }}"/>
+                    </div>
+                {{/if}}
+                <div class="inline in-cha4">
+                    {{ localize 'utopia.sim.uses' }}:
+                    <input name="system.actionsArr.{{@index}}.amount" type="number" value="{{obj.amount}}"/>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</form>

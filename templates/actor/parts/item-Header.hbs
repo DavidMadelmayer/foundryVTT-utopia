@@ -1,0 +1,14 @@
+<div class="per45 text-over">
+    <img class="inv-image" src="{{item.img}}" alt="{{item.name}}">
+    &nbsp;
+    <a class="item-edit">
+        {{item.name}}
+    </a>
+    |
+    {{#if item.system.type}}
+        {{localize (concat 'utopia.type.' item.system.type)}}
+    {{/if}}
+    {{#ifCond item.system.amount ">" 1}}
+        x{{item.system.amount}}
+    {{/ifCond}}
+</div>
