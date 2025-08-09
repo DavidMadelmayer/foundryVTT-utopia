@@ -1,4 +1,5 @@
-# Utopia
+# Utopia <img src="https://raw.githubusercontent.com/DavidMadelmayer/foundryVTT-utopia/ca05f823e8cf23cd732e4d65f4af6dd64924cf43/assets/UtopiaLogo.svg" alt="Utopia Logo" style="width:30px;"/>
+
 
 ![Static Badge](https://img.shields.io/badge/FOUNDRY_MINIMUM_VERSION-12-orange?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/FOUNDRY_VERIFIED_VERSION-12.331-orange?style=for-the-badge)
