@@ -1,5 +1,7 @@
 # Utopia
 
+![Static Badge](https://img.shields.io/badge/FOUNDRY_MINIMUM_VERSION-12-orange)
+
 A Fan System made by [David](https://github.com/DavidMadelmayer) with permission of [Oridont](https://myramyth.com/utopia)
 
 ## Download
